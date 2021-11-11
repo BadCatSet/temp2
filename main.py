@@ -18,14 +18,16 @@ class Ex(QMainWindow):
             s = random.randrange(50, 150)
             x = random.randrange(s, 700 - s)
             y = random.randrange(s, 700 - s)
-            self.circles.append((x, y, s))
+            c = QColor(random.randrange(255), random.randrange(255), random.randrange(255))
+            self.circles.append((x, y, s, c))
         self.repaint()
 
     def paintEvent(self, event):
         qp = QPainter()
         qp.begin(self)
-        qp.setBrush(QColor(100, 100, 0))
+
         for i in self.circles:
+            qp.setBrush(i[3])
             qp.drawEllipse(i[0], i[1], i[2], i[2])
         qp.end()
 
